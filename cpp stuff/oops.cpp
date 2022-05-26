@@ -19,7 +19,7 @@ class Pokemon{
     Pokemon() {} // no arg default constructor
 
     // in memory the object contains all its data members and along with that, this which is a pointer to the object itself
-    Pokemon(string name, string type,int weight)
+    Pokemon(string name, string type,int weight) // parameterized constructor
     {
         // when accessing the properties of the object itself we use . but if we want to access the properties of the object it points to we use ->
         this->name = name;
