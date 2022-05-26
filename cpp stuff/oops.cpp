@@ -38,6 +38,9 @@ class Pokemon{
         cout<<name<<" "<<type<<" "<<weight<<"\n";
     }
 
+    // destructor - function called just when an object is destroyed or removed from memory
+    ~Pokemon() {}
+
 };
 
 int main()
