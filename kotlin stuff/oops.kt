@@ -7,7 +7,7 @@ class Human(name : String, age : Int){
     lateinit var job : String
 
     var happiness = 0
-    // can make custom getters and setters and even make them provate
+    // can make custom getters and setters and even make them private
     get(){
         return field/2
     }
@@ -29,9 +29,21 @@ class Human(name : String, age : Int){
 
 }
 
+// must have atleast one parameter in primary constructor
+// need to specifiy val or var with the parameters as in data classes primary constructor can have only properties of the class as parameter
+data class User(val name : String,val age : Int)
+
 fun main(){
     var human = Human("big boi", 23)
     var h2 = Human("leety", 99, "email")
     h2.happiness = 11
     println(h2.happiness)
+    // will compare all the data members
+    println(human==h2)
+
+    // data classes
+    val c = User("lol",20)
+    println(c.component1()) // return first parameter value, in this case it is name
+    // can deconstruct data classes like this, i will store component1, j component2 and so on
+    val (i,j) = c
 }

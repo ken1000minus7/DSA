@@ -74,8 +74,26 @@ fun main(){
     val hehe = ok ?: "nab"
 
     // asserted non null, converts a null type to non null type but will give NullPointerException if the variable is null so be careful
+    ok = "i"
     val haha = ok!!
 
+    // smart implicit casting
+    val ono : Any = "ok"
+
+    // explicit unsafe casting
+    val lol = ono as String
+
+    // explicit safe casting, will return null if type casting goes wrong
+    val hhh = ono as? String
+
+    println(hhh)
+
+    // lambda expressions, function literals use functions in expressions
+    val aa : (Int,Int) -> Int = { a , b ->
+        a+b
+    }
+    println(aa(3,4))
+    
     // rest all mostly java ripoff ez hehe
 }
 
