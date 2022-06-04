@@ -9,7 +9,7 @@ void toh(int n,string from,string aux,string to)
         cout<<"Disk 1 from "+from+" to "+to<<"\n";
         return;
     }
-    // send all disks above current disk to the auxiallary tower
+    // send all disks above current disk to the auxillary tower
     toh(n-1,from,to,aux);
     // send the current disk to its destination tower
     cout<<"Disk "<<n<<" from "+from+" to "+to<<"\n";

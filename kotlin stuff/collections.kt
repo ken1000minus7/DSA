@@ -1,5 +1,5 @@
 fun main(){
-    // make array like this, can have different types or same type dsnt matter, can;t change sizze
+    // make array like this, can have different types or same type dsnt matter, can't change size
     val a = arrayOf(1,2,"ok")
     val b = arrayOf<String>("a","b") // can specify type like this
     println(a.contentToString())
