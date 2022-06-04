@@ -28,7 +28,7 @@ public:
         arr = new T[cp];
     }
 
-    Vector<T>(int n,T def)
+    Vector(int n,T def)
     {
         sz = n;
         cp = max(1,n);
@@ -41,7 +41,12 @@ public:
         sz = li.size();
         cp = li.size();
         arr = new T[cp];
-        int i = 0;
+        auto it = li.begin();
+        for(int i=0;i<sz;i++)
+        {
+            arr[i] = *it;
+            advance(it,1);
+        }
     }
 
     int size()
@@ -76,7 +81,7 @@ public:
     {
         if(sz==cp) creatNewArray();
         sz++;
-        for(int i=1;i<sz;i++)
+        for(int i=sz-1;i>0;i--)
         {
             swap(arr[i],arr[i-1]);
         }
@@ -107,7 +112,7 @@ public:
         }
         if(sz==cp) creatNewArray();
         sz++;
-        for(int j=i+1;j<sz;j++)
+        for(int j=sz-1;j>i;j--)
         {
             arr[j] = arr[j-1];
         }
@@ -154,6 +159,17 @@ public:
         return (i<0 || i>=sz) ? temp : arr[i];
     }
 
+    void operator =(Vector<T> &v)
+    {
+        sz = v.size();
+        cp = v.capacity();
+        arr = new T[cp];
+        for(int i=0;i<sz;i++)
+        {
+            arr[i] = v[i];
+        }
+    }
+
     bool empty()
     {
         return sz==0;
@@ -164,11 +180,6 @@ public:
         sz=0;
     }
 
-    ~Vector()
-    {
-        delete []arr;
-    }
-
 };
 
 int main()
@@ -177,6 +188,11 @@ int main()
     Vector<int> v1 = v;
     Vector<int> v2 = {1,2,3,4,5};
     v2.pushBack(20);
+    for(int i=0;i<50;i++) v2.pushBack(i),cout<<v2.capacity()<<"\n";
+    for(int i=0;i<5;i++) v2.pushFront(i),cout<<v2.capacity()<<"\n";
+    v2.pushFront(200);
+    for(int i=0;i<40;i++) v2.popBack();
+    for(int i=0;i<10;i++) v2.popFront();
     for(int i=0;i<v2.size();i++)
     {
         cout<<v2[i]<<"\n";
@@ -195,7 +211,7 @@ int main()
     {
         for(int j=0;j<n;j++)
         {
-            cout<<grid.get(i).get(j)<<" ";
+            cout<<grid[i][j]<<" ";
         }
         cout<<"\n";
     }
