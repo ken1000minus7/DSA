@@ -180,6 +180,11 @@ public:
         sz=0;
     }
 
+    ~Vector()
+    {
+        delete []arr;
+    }
+
 };
 
 int main()
