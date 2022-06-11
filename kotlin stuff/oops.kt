@@ -1,5 +1,6 @@
 // primary constructor written like this
-class Human(name : String, age : Int){
+// if val or var written with parameter then the parameter becomes a property
+class Human(val name : String, age : Int){
 
     var email : String? = null
 
