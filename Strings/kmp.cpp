@@ -15,17 +15,19 @@ int main()
     // and instead of bringing back i, we can continue i from its current position as we have already checked the previous elements whether they are present or not using lps
     int lps[s2.length()+1] = {0};
     int t = 0;
-    for(int j=1;j<s2.length();j++)
+    int j = 1;
+    while(j<s2.length())
     {
         if(s2[j]==s2[t])
         {
-            lps[j+1] = lps[j] + 1;
-            t++;
+            lps[j+1] = ++t;
+            j++;
         }
-        else t=0;
+        else if(t!=0) t=lps[t-1];
+        else j++;
     }
     int i=0;
-    int j=0;
+    j=0;
     while(i<s1.length())
     {
         // if there is a match we move both i and j forward
