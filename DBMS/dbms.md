@@ -48,4 +48,28 @@ The three schema architecture consists of three levels
 
 <img src="https://www.tutorialspoint.com/assets/questions/media/53823/three_level_schema_architecture.jpg" height=540>
 
-Provides data abstraction as user can't directly access the data stored. User is not aware of how the data is actually stored.
+Provides data abstraction and independence as user can't directly access the data stored. User is not aware of how the data is actually stored.
+
+**Logical data independance** between view level and logical level, changes in the conceptual schema do not affect the external schema.
+
+**Physical data independance** between logical level and physical level, changes in the physical schema do not affect the conceptual schema.
+
+## Different keys
+
+**Candidate key** is an attribute or column that uniquely identifies each row. From the collection of candidate keys, we choose the primary key.
+
+**Primary key** is used to uniquely identify each row and only one key is selected as primary key from the set of candidate keys, the remaining keys are called **alternate keys**. Primary keys have unique and not null constraints.
+
+**Foreign key** is an attribute or set of attributes that references the primary key of same table or another table. Foreign key maintains refrential integrity. There can be multiple foreign keys in a table. The table having the foreign key is called referencing table and the table whose primary key is being referenced is called referenced table.
+
+
+Example of creating a foreign key in a table
+```sql
+CREATE TABLE course(
+    course_id int,
+    course_name varchar(20),
+    roll_no int references student(roll_no)
+);
+```
+
+<img src="https://static.javatpoint.com/dbms/images/foreign-key-in-dbms3.png">
