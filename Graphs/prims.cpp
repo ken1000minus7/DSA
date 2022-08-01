@@ -21,6 +21,7 @@ int main()
     }
     vector<int> key(n,INT32_MAX);
     vector<int> parent(n,-1);
+    vector<int> done(n);
     key[0] = 0;
     pq.push({0,0});
     while(!pq.empty())
@@ -28,10 +29,12 @@ int main()
         auto p = pq.top();
         pq.pop();
         int i = p.second;
+        done[i]++;
         for(auto pp : adj[i])
         {
             int j = pp.first;
             int w = pp.second;
+            if(done[j]) continue;
             if(w<key[j])
             {
                 key[j] = w;
