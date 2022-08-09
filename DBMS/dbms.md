@@ -73,3 +73,69 @@ CREATE TABLE course(
 ```
 
 <img src="https://static.javatpoint.com/dbms/images/foreign-key-in-dbms3.png">
+
+When carrying out different actions on referenced table, some problems can arise.
+1. **Insert:** No violation will occur.
+2. **Delete:** Violation may occur, as data is deleted from referenced table but may still be referenced by the referencing table. Can fix this using `ON DELETE CASCADE`,`ON DELETE SET NULL`, etc.
+3. **Update:** Violation may occur due to data inconsistency. Can be fixed using `ON UPDATE CASCADE`,`ON UPDATE SET NULL`, etc.
+
+In case of referencing table
+1. **Insert:** Violation may occur if value of foreign key in new row is invalid.
+2. **Delete:** No violation will occur.
+3. **Update:** Violation may occur if updated foreign key is invalid.
+
+**Super key** is a combination of all possible attributes that can uniquely identify each row, Super key is super set of any primary key, if there are n attributes A1, A2, A3, ... An and candidate key is A1, then possible super keys can be A1, (A1,A2), (A1,A3) .... There will $2^{n-1}$ super keys in this case. Similarly, if there are two candidate keys, there are $2^{n-1} + 2^{n-1} - 2^{n-2}$ 
+
+## Entity - Relationship (ER) Model
+
+ER model is a logical representation of the data in a system that shows the differents entities present, their attributes and their relationships.
+
+**Entity** is any object that has a physical existence. **Relationship** is any association or connection between entities. **Attributes** are the properties representing an entity. 
+
+In ER diagram, entity is denoted by **rectangle**, relationship by **diamond** and attribute by **ellipse**. 
+
+<img src="https://prepinsta.com/wp-content/uploads/2021/04/entityrelationship.webp" height=500>
+
+### Types of Attributes
+1. **Single vs Multivalued** <br>
+Single valued attributes can contain only a single value, like age, but muiltivalued attributes can have multiple values, like a person can have multiple phone numbers. Multivalued attributes are represented using double ellipse.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept7.png"> </center>
+
+2. **Simple vs Composite** <br>
+Composite attributes can be further broken down into multiple attributes, like name can be broken down into first name, last name, etc while simple attributes can't be broken down.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept6.png"></center>
+
+3. **Stored vs Derived** <br>
+Stored attributes are directly provided but derived attributes aren't directly provided. Instead, their value is derived from other attributes, like we can get the age of a person from their date of birth. Derived attributes are represented using dotted ellipse.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept8.png"></center>
+
+4. **Key vs Non-key** <br>
+Key attributes uniquely identify an entity whereas the value of non-key attributes may or may not be unique. Key attributes are underlined.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept5.png"></center>
+
+5. **Required vs Optional** (not part of ER model) <br>
+Required attributes must be provided for every entity whereas optional arguments may or may not be provided.
+
+6. **Complex attributes** <br>
+Composite + multivalued hehe
+
+### Type or Degree of Relationships
+1. **One to One Relationship (1-1)** <br>
+Relationship in which an instance of an entity is related to only a single instance of another entity. Here, primary key of any of the entities can become primary key of the relationship table.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept10.png"></center>
+
+2. **One to Many Relationship (1-M) and Many to One Relationship (M-1)** <br>
+Single instance of an entity is related to more than one instance of another entity. In this case, primary key of the entity on the many side acts as the primary key in the realtionship table.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept11.png"></center>
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept12.png"></center>
+
+3. **Many to Many Relationship (M-N)** <br>
+Multiple instances of one entity can be related to multiple instances of another entity. Primary key in the relationship table will be a composite key made using the primary keys of the two entites. Table reduction is not possible.
+
+<center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept13.png"></center>
