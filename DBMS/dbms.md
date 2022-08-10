@@ -139,3 +139,97 @@ Single instance of an entity is related to more than one instance of another ent
 Multiple instances of one entity can be related to multiple instances of another entity. Primary key in the relationship table will be a composite key made using the primary keys of the two entites. Table reduction is not possible.
 
 <center><img src="https://static.javatpoint.com/dbms/images/dbms-er-model-concept13.png"></center>
+
+## Normalization
+It is a method of organizing data in a table to remove or reduce data redundancy. The data redundancy can be of two types
+1. **Row level redundancy:** Multiple rows have all same values. This is removed with the help of primary key constraint which ensures no two rows have completely same values.
+2. **Column level redundancy:** Certain columns have same values over different rows, this can result in following anomalies
+
+Data redundancy can lead to following anomalies
+1. **Insertion anomaly**: A row can't be inserted as not all the required columns can be filled. Like here, a student may not have decided what course they want to select. So their entry can't be added.
+
+<center><img src="https://media.geeksforgeeks.org/wp-content/uploads/dbms-1.jpg"></center>
+
+1. **Deletion anomaly**: Deleting a row to remove a particular data can end up leading to removal of important data that shouldn't have been removed. Like if only one student has a particular course, removal of that student from the table will lead to removal of the course as well.
+
+<center><img src="https://media.geeksforgeeks.org/wp-content/uploads/dbms-1.jpg"></center>
+
+1. **Updation anomaly**: If there is any change to be made in redundant data, the change has to made for every row containing that redundant data.  
+
+<center><img src="https://media.geeksforgeeks.org/wp-content/uploads/dbms-3.jpg"></center>
+
+### First Normal Form (1NF)
+It says that a table can't have multivalued or composite attributes, i.e., attributes that contain multiple values.
+
+A table havingmultivalued attributes can be converted to first normal form by having different rows for each of the multiple values. Here, primary key will be a composite key of the original primary key and the multivalued attributes.
+
+<center><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Normalisation_normalforms_1.png"></center>
+
+We can also handle multiple values by making separate columns for each of the values, or by splitting the table into multiple tables having relationship between each other.
+
+### Functional dependency
+Functional dependency is used to determine the relationship between different attributes. Represented as 
+
+$X \rightarrow Y$
+
+which means that $X$ can determine $Y$ or $Y$ can be determined by $X$. $X$ is called determinant while $Y$ is called dependant.
+
+There are two types of functional dependencies
+1. **Trivial dependencies** <br>
+$X \rightarrow Y$ where $Y$ is a subset of $X$. Hence, $X \cap Y \neq \phi$
+
+1. **Non-Trivial dependencies** <br>
+$X \rightarrow Y$ where $Y$ is not a subset of $X$. If $X \cap Y = \phi$, then it is called complete non-trivial.
+
+Some properties of functional dependencies are
+1. **Reflexive** <br>
+If $Y$ is a subset of $X$, then $X \rightarrow Y$.
+
+2. **Augmentation** <br>
+If $X \rightarrow Y$, then $XZ \rightarrow YZ$.
+
+3. **Transitive** <br>
+If $X \rightarrow Y$ and $Y \rightarrow Z$, then $X \rightarrow Z$.
+
+4. **Union** <br>
+If $X \rightarrow Y$ and $X \rightarrow Z$, then $X \rightarrow YZ$.
+
+5. **Decomposition** <br>
+If $X \rightarrow YZ$, then $X \rightarrow Y$ and $X \rightarrow Z$.
+
+6. **Pseudo transitive** <br>
+If $X \rightarrow Y$ and $WY \rightarrow Z$, then $WX \rightarrow Z$.
+
+7. **Composition** <br>
+If $X \rightarrow Y$ and $W \rightarrow Z$, then $XY \rightarrow WZ$.
+
+### Closure Method
+Closure method can be used to find all the candidate keys in a relation by using the functional dependencies between the attributes.
+
+Closure of an attribute is the set of attributes that can be determined using that attribute. If all the attributes can be determined using an attribute then that attribute is a candidate key. For example,
+
+In a relation, $R(A,B,C,D)$ with functional dependencies $(A \rightarrow B, B \rightarrow C, C \rightarrow D)$, the attributes will have the following closures,
+
+$A^{+} = ABCD$
+
+$B^{+} = BCD$
+
+$C^{+} = CD$
+
+$D^{+} = D$
+
+So the candidate keys in this relation will be $\{A\}$.
+
+Prime attributes are the attributes that can determine the candidate keys, in this case there's only one prime attribute $A$.
+
+### Second Normal Form (2NF)
+In second normal form,
+- Table must be in first normal form.
+- All non-prime attributes should be fully functional dependent on the candidate keys. There should be no partial dependency, i.e., no non-prime attribute is dependent on any proper subset of any candidate key of the table.
+
+A table can be converted to second normal form by splitting the table into different tables such that the non-prime attributes of each of the new tables are fully functional dependent on the candidate keys.
+
+### Third Normal Form (3NF)
+In third normal form,
+- Table must be in second normal form.
+- 
