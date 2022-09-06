@@ -72,7 +72,7 @@ CREATE TABLE course(
 );
 ```
 
-<img src="https://static.javatpoint.com/dbms/images/foreign-key-in-dbms3.png">
+<img style="background-color:white" src="https://static.javatpoint.com/dbms/images/foreign-key-in-dbms3.png">
 
 When carrying out different actions on referenced table, some problems can arise.
 1. **Insert:** No violation will occur.
@@ -232,4 +232,16 @@ A table can be converted to second normal form by splitting the table into diffe
 ### Third Normal Form (3NF)
 In third normal form,
 - Table must be in second normal form.
-- 
+- There should be no transitive dependency for non-prime attributes, i.e., for each functional dependency, either the determinant should be a candidate key or super key, or the dependent should be a prime attribute. No non-prime attribute should determine a non-prime attribute.
+
+### Boyce Codd Normal Form (BCNF)
+In BCNF,
+- Table must be in third normal form.
+- For each functional dependency, the determinant must be a candidate key or super key.
+
+Both BCNF and third normal form ensure **lossless decomposition**.
+
+Third normal form always ensures **dependency preserving decomposition**, i.e., no dependency is deleted or changed during decomposition. But BCNF may or may not ensure it.
+
+<center style="background-color:white"><img src="https://static.javatpoint.com/dbms/images/dbms-normalization.png"></center>
+
