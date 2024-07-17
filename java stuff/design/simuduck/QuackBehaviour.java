@@ -1,4 +1,4 @@
-package design.simuduck;
+package simuduck;
 
 public interface QuackBehaviour {
     void quack();
